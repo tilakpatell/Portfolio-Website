@@ -1,17 +1,12 @@
 # Tilak Patel's Personal Portfolio Website
 
-Welcome to my personal portfolio website! This site showcases my skills, projects, experiences, and interests in a dynamic and interactive way. Below, you'll find detailed information about the features of the site and how to navigate through it.
+Welcome to my personal portfolio website! This site showcases my skills, projects, experiences, and interests dynamically and interactively. Below, I've included detailed information about the site's features and how to navigate through it.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Features
 
@@ -25,6 +20,7 @@ Welcome to my personal portfolio website! This site showcases my skills, project
 
 - **Frontend:**
   - React
+  - Vite
   - Tailwind CSS
   - react-icons
   - react-simple-typewriter
