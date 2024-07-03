@@ -1,5 +1,7 @@
 # Tilak Patel's Personal Portfolio Website
 
+![Screenshot of my portfolio website](public/picturesite.png)
+
 Welcome to my personal portfolio website! This site showcases my skills, projects, experiences, and interests dynamically and interactively. Below, I've included detailed information about the site's features and how to navigate through it.
 
 ## Table of Contents
