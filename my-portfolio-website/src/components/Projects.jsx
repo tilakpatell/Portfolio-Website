@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '../constants';
 import { FaLocationArrow } from 'react-icons/fa';
+import GitHubCalendar from "react-github-calendar";
 
 function Projects() {
   const containerVariants = {
@@ -23,7 +24,7 @@ function Projects() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -45,7 +46,7 @@ function Projects() {
         </motion.h2>
       </div>
 
-      <motion.div 
+      <motion.div
         className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10"
         variants={containerVariants}
       >
@@ -87,7 +88,7 @@ function Projects() {
             </div>
 
             <motion.a 
-              href={project.link} 
+              href={project.link}
               className="flex items-center text-purple-400 hover:text-purple-300 transition-colors"
               whileHover={{ scale: 1.1 }}
             >
@@ -96,6 +97,25 @@ function Projects() {
             </motion.a>
           </motion.div>
         ))}
+      </motion.div>
+
+      {/* GitHub Calendar Section */}
+      <motion.div
+        className="mt-20"
+        variants={containerVariants}
+      >
+        <h2 className="text-4xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold mb-10">
+          Days I <strong className="text-purple-500">Code</strong>
+        </h2>
+        <div className="flex justify-center">
+          <GitHubCalendar
+            username="tilakpatell"
+            blockSize={15}
+            blockMargin={5}
+            color="#c084f5"
+            fontSize={16}
+          />
+        </div>
       </motion.div>
     </motion.div>
   );
