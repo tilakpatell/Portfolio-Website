@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import profilePicture from '../assets/pic.jpg';
+import surprisePicture from '../assets/surprisePicture.jpg'; 
 import TypingEffect from './TypingEffect';
 import EmojiEffect from './EmojiEffect';
 import ParagraphEffect from './ParagraphEffect';
@@ -12,6 +13,17 @@ function HeroSection() {
   const emojiWords = ["💻", "👨‍💻", "📱", "🍿", "🍕"];
 
   const [currentEmojiIndex, setCurrentEmojiIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleDoubleClick = () => {
+    setIsFlipped(true);
+  };
+
+  const handleClickOutside = () => {
+    if (isFlipped) {
+      setIsFlipped(false);
+    }
+  };
 
   const WelcomeText = () => (
     <motion.div
@@ -36,7 +48,7 @@ function HeroSection() {
   );
 
   return (
-    <div className="relative flex flex-col min-h-screen overflow-hidden">
+    <div className="relative flex flex-col min-h-screen overflow-hidden" onClick={handleClickOutside}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -99,16 +111,56 @@ function HeroSection() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
             >
-              <motion.img
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1 }}
-                whileHover={{ scale: 1.1 }}
-                className="rounded-lg border-2 border-gray-300 shadow-md"
-                src={profilePicture}
-                alt="profile picture of Tilak Patel"
-                style={{ width: '500px', height: '500px', objectFit: 'cover' }}
-              />
+              <AnimatePresence>
+                <motion.div
+                  key={isFlipped ? 'back' : 'front'}
+                  initial={{ rotateY: 0 }}
+                  animate={{ rotateY: isFlipped ? 180 : 0 }}
+                  exit={{ rotateY: 0 }}
+                  transition={{ duration: 0.6 }}
+                  style={{ 
+                    transformStyle: 'preserve-3d',
+                    width: '500px',
+                    height: '500px'
+                  }}
+                  onDoubleClick={handleDoubleClick}
+                  className="cursor-pointer relative"
+                >
+                  <motion.img
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    className="rounded-lg border-2 border-gray-300 shadow-md absolute w-full h-full object-cover"
+                    src={profilePicture}
+                    alt="profile picture of Tilak Patel"
+                    style={{ 
+                      backfaceVisibility: 'hidden'
+                    }}
+                  />
+                  <motion.div
+                    style={{ 
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)',
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <img
+                      src={surprisePicture}
+                      alt="Surprise!"
+                      className="rounded-lg border-2 border-gray-300 shadow-md w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <h2 className="text-4xl font-bold text-white bg-black bg-opacity-50 p-4 rounded">SURPRISE!</h2>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
             </motion.div>
           </div>
         </div>

@@ -21,7 +21,7 @@ function Navbar() {
     { name: 'Experiences', emoji: '🚀', id: 'experiences' },
     { name: 'Projects', emoji: '🌟', id: 'projects' },
     { name: 'Resume', emoji: '📄', id: 'resume' },
-    { name: 'Contact', emoji: '📬', id: 'contact' }
+    { name: 'Journey', emoji: '😎', id: 'journey'}
   ];
 
   useEffect(() => {
@@ -137,8 +137,10 @@ function NavItem({ item }) {
       whileTap={{ scale: 0.95 }}
     >
       <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
-        {item.name} {item.emoji}
+        {item.name}
       </span>
+      {' '}
+      <span className="text-initial">{item.emoji}</span>
       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 transition-all group-hover:w-full"></span>
     </motion.a>
   );

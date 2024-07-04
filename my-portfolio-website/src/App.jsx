@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutMe from './components/AboutMe';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Resume from './components/Resume';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CodingJourneyTimeline from './components/Journey';
+import LoadingComponent from './components/Loading';
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time or replace with actual data fetching
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Adjust time as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingComponent />;
+  }
+
   return (
     <div className="antialiased selection:bg-blue-300 selection:text-cyan-900 overflow-hidden text-neutral-300">
       <div className="h-full w-full fixed top-0 -z-10"></div>
@@ -31,8 +47,8 @@ const App = () => {
           <div id="resume" className="pt-16">
             <Resume />
           </div>
-          <div id="contact" className="pt-16">
-            <Contact />
+          <div id="journey" className='pt-16'>
+            <CodingJourneyTimeline/>
           </div>
           <Footer />
         </div>

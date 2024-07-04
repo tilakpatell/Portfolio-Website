@@ -6,10 +6,12 @@ import { useTransition, animated } from '@react-spring/web';
 import aboutImg1 from '../assets/aboutImg1.jpg';
 import aboutImg2 from '../assets/aboutImg2.jpg';
 import aboutImg3 from '../assets/aboutImg3.jpg';
+import aboutImg4 from '../assets/aboutImg4.jpg';
+
 
 function AboutMe() {
   const [index, setIndex] = useState(0);
-  const images = [aboutImg1, aboutImg2, aboutImg3];
+  const images = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
