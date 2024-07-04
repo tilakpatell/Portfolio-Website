@@ -9,8 +9,6 @@ Welcome to my personal portfolio website! This site showcases my skills, project
 - [Technologies Used](#technologies-used)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Deployment](#deployment)
-- [Contact](#contact)
 
 ## Features
 
@@ -36,8 +34,8 @@ Welcome to my personal portfolio website! This site showcases my skills, project
 - **Downloadable Resume:** Option to view and download my latest resume.
 - **Resume Preview:** A visual preview of my resume.
 
-### Contact Section
-- **Contact Form:** A form for visitors to send me messages directly from the website.
+### Journey Section
+- **Journey Section:** A Dynamic graph to show my progress in coding and college.
 
 ### General Features
 - **Responsive Design:** The website is fully responsive and optimized for various screen sizes.
