@@ -15,7 +15,7 @@ function HeroSection() {
 
   const WelcomeText = () => (
     <motion.div
-      className="text-8xl font-extrabold text-center mb-16 pt-16"
+      className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-center mb-8 sm:mb-16 pt-8 sm:pt-16"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 0.5 }}
@@ -41,11 +41,11 @@ function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="flex-grow flex flex-col items-center justify-start z-10 pt-8 pb-16"
+        className="flex-grow flex flex-col items-center justify-start z-10 pt-4 sm:pt-8 pb-8 sm:pb-16"
       >
         <WelcomeText />
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-          <div className="flex flex-wrap items-center justify-center lg:justify-between">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-8">
+          <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between">
             <motion.div 
               className="w-full lg:w-3/5 mb-8 lg:mb-0"
               whileHover={{ scale: 1.05 }}
@@ -63,7 +63,7 @@ function HeroSection() {
                     initial={{ x: -200, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 1 }}
-                    className="font-bold text-6xl lg:text-7xl bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent mb-3"
+                    className="font-bold text-4xl sm:text-5xl lg:text-7xl bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent mb-3"
                   >
                     Tilak Patel <span style={{ color: '#fff' }}>🫠</span>
                   </motion.h1>
@@ -72,7 +72,7 @@ function HeroSection() {
                   initial={{ x: 200, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 1 }}
-                  className="font-bold text-3xl lg:text-4xl bg-clip-text tracking-tight bg-gradient-to-l from-blue-400 via-slate-400 to-violet-300 text-transparent mb-3"
+                  className="font-bold text-xl sm:text-2xl lg:text-4xl bg-clip-text tracking-tight bg-gradient-to-l from-blue-400 via-slate-400 to-violet-300 text-transparent mb-3"
                   whileHover={{ scale: 1.05 }}
                 >
                   <TypingEffect 
@@ -87,7 +87,7 @@ function HeroSection() {
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 1 }}
-                  className="max-w-xl py-3 font-bold tracking-tighter text-neutral-300"
+                  className="max-w-xl py-3 font-bold tracking-tighter text-sm sm:text-base text-neutral-300"
                   whileHover={{ scale: 1.05 }}
                 >
                   <ParagraphEffect words={TILAK_DESC} />

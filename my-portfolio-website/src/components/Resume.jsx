@@ -27,21 +27,21 @@ function Resume() {
 
   return (
     <motion.div
-      className="mt-40"
+      className="mt-20 sm:mt-40"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex justify-center items-center my-16">
+        <div className="relative flex justify-center items-center my-8 sm:my-16">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 0.2, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="absolute w-full max-w-3xl h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg z-0"
+            className="absolute w-full max-w-3xl h-16 sm:h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg z-0"
           ></motion.div>
           <motion.h2
-            className="text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative"
+            className="text-4xl sm:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -50,9 +50,9 @@ function Resume() {
           </motion.h2>
         </div>
 
-        <div className="flex flex-col items-center justify-center space-y-8">
+        <div className="flex flex-col items-center justify-center space-y-6 sm:space-y-8">
           <motion.p
-            className="text-xl text-gray-300 text-center max-w-2xl"
+            className="text-lg sm:text-xl text-gray-300 text-center max-w-2xl px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -64,7 +64,7 @@ function Resume() {
           <motion.a
             href={resumePdf}
             download="Tilak_Patel_Resume.pdf"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-base sm:text-lg font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
             variants={buttonVariants}
             whileHover="hover"
           >
@@ -72,9 +72,8 @@ function Resume() {
             Download Resume
           </motion.a>
 
-          
           <motion.div
-            className="mt-8 w-full max-w-2xl"
+            className="mt-6 sm:mt-8 w-full max-w-2xl px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}

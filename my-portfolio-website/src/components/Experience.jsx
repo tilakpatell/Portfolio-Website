@@ -95,15 +95,15 @@ const Experience = () => {
   ];
 
   return (
-    <div className="mt-16">
-      <div className="relative flex justify-center items-center my-16">
-        <div className="absolute w-full max-w-3xl h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg opacity-20"></div>
-        <h2 className='text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative'>
+    <div className="mt-8 sm:mt-16">
+      <div className="relative flex justify-center items-center my-8 sm:my-16">
+        <div className="absolute w-full max-w-3xl h-16 sm:h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg opacity-20"></div>
+        <h2 className='text-4xl sm:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4'>
           Experiences
         </h2>
       </div>
       <TechStack />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 mt-8 px-4 sm:px-0">
         {experiences.map((experience, index) => (
           <ExperienceCard 
             key={index} 
