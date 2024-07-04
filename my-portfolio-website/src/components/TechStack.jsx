@@ -35,7 +35,6 @@ function TechStack() {
       <div 
         className="relative flex justify-center items-center my-16"
       >
-        {/* Ensure the z-index of the background box is lower than the text */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.2, scale: 1 }}

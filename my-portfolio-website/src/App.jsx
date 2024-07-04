@@ -5,6 +5,9 @@ import AboutMe from './components/AboutMe';
 import TechStack from './components/TechStack';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Resume from './components/Resume';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -19,6 +22,9 @@ const App = () => {
           <TechStack/>
           <Experience/>
           <Projects/>
+          <Resume/>
+          <Contact/>
+          <Footer/>
         </div>
       </div>
     </div>
