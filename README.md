@@ -22,6 +22,7 @@ Welcome to my personal portfolio website! This site showcases my skills, project
 
 - **Frontend:**
   - React
+  - Framer Animation
   - Vite
   - Tailwind CSS
   - react-icons
