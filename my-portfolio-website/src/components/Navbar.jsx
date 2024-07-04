@@ -16,12 +16,12 @@ function Navbar() {
   });
 
   const navItems = [
-    { name: 'Intro', emoji: '👋' },
-    { name: 'About', emoji: '👨‍💻' },
-    { name: 'Experiences', emoji: '🚀' },
-    { name: 'Projects', emoji: '🌟' },
-    { name: 'Resume', emoji: '📄' },
-    { name: 'Contact', emoji: '📬' }
+    { name: 'Intro', emoji: '👋', id: 'intro' },
+    { name: 'About', emoji: '👨‍💻', id: 'about' },
+    { name: 'Experiences', emoji: '🚀', id: 'experiences' },
+    { name: 'Projects', emoji: '🌟', id: 'projects' },
+    { name: 'Resume', emoji: '📄', id: 'resume' },
+    { name: 'Contact', emoji: '📬', id: 'contact' }
   ];
 
   useEffect(() => {
@@ -131,7 +131,7 @@ function Navbar() {
 function NavItem({ item }) {
   return (
     <motion.a
-      href={`#${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+      href={`#${item.id}`}
       className="text-base font-bold relative group block py-2"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}

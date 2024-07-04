@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutMe from './components/AboutMe';
-import TechStack from './components/TechStack';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Resume from './components/Resume';
@@ -17,14 +16,25 @@ const App = () => {
       <div className="relative z-10">
         <div className="container mx-auto px-8">
           <Layout />
-          <HeroSection />
-          <AboutMe />
-          <TechStack/>
-          <Experience/>
-          <Projects/>
-          <Resume/>
-          <Contact/>
-          <Footer/>
+          <div id="intro" className="pt-16">
+            <HeroSection />
+          </div>
+          <div id="about" className="pt-16">
+            <AboutMe />
+          </div>
+          <div id="experiences" className="pt-16">
+            <Experience />
+          </div>
+          <div id="projects" className="pt-16">
+            <Projects />
+          </div>
+          <div id="resume" className="pt-16">
+            <Resume />
+          </div>
+          <div id="contact" className="pt-16">
+            <Contact />
+          </div>
+          <Footer />
         </div>
       </div>
     </div>
