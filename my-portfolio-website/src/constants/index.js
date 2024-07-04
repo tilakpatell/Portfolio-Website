@@ -1,3 +1,7 @@
+import picture1 from '../assets/picture1.jpeg';
+import website from '../assets/website.png';
+import floodit from '../assets/floodit.jpeg';
+
 
 export const ABOUT_TEXT = `I am Tilak Patel, a dedicated and versatile Computer Science major at Northeastern University with minors in Computer Engineering and Robotics. My technical skills include Java, Python, JavaScript, and React, and I have a proven track record in developing web applications, optimizing data management systems, and conducting research on privacy concerns related to voice assistants. My professional experience includes working as a Network and Software Engineer Intern at GreenTree Capital, where I enhanced application efficiency and user experience. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. 
 Beyond my professional pursuits, I am passionate about pop culture, especially Star Wars, Marvel, and The Boys. I'm a videogame nerd and an avid foodie with a special love for pizza. In my spare time, I enjoy exploring new technologies, contributing to open-source projects, and immersing myself in the latest movies and TV shows.`;
@@ -29,29 +33,26 @@ export const EXPERIENCES = [
 
 export const PROJECTS = [
   {
-    title: "Co-OpSearcher Group Web App",
-    image: "path_to_co_opsearcher_image",
-    description: `Collaborating on the development of a full-stack Co-Op/Internship web scraper and web application using Flask to serve a REST API with React as the frontend. Implemented Selenium, Flask, and ChatGPT API to retrieve and analyze data.`,
+    title: "Co-OpSearcher Website",
+    image: picture1,
+    link: "https://github.com/shreyaanpathak/co-opsearcher",
+    description: `Collaborating on the development of a full-stack Co-Op/Internship web scraper and web application using Flask to serve a REST API with React as the frontend.`,
     technologies: ["Python", "Flask", "React", "Selenium", "ChatGPT API"],
   },
   {
     title: "FloodIt Game",
-    image: "path_to_floodit_image",
-    description: `Recreated the game FloodIt in Java. Enhanced gameplay mechanics and user interface.`,
+    image: floodit,
+    link: "https://github.com/tilakpatell/FloodItGame",
+    description: `Recreated the game FloodIt in Java. Enhanced gameplay mechanics and user interface by implementing scoreboard and fun gimmicks.`,
     technologies: ["Java"],
   },
   {
-    title: "ColorPicker Web App",
-    image: "path_to_colorpicker_image",
-    description: `Developed a web app for color selection using React hooks for state management. Enhanced user interaction with dynamic and responsive design.`,
-    technologies: ["React", "JavaScript", "HTML", "CSS", "Git"],
-  },
-  {
-    title: "Weather App",
-    image: "path_to_weather_app_image",
-    description: `Built a desktop application for real-time weather data retrieval using Python and Tkinter.`,
-    technologies: ["Python", "CustomTkinter", "GitHub"],
-  },
+    title: "Tilak's Portfolio",
+    image: website,
+    link: "https://github.com/tilakpatell/Portfolio-Website",
+    description: `Developed a Portfolio Website. Enhanced user interaction with dynamic and responsive design.`,
+    technologies: ["React", "Framer", "TailWind CSS", "JavaScript", "HTML", "Git"],
+  }
 ];
 
 
