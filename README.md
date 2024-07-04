@@ -7,7 +7,6 @@ Welcome to my personal portfolio website! This site showcases my skills, project
 ## Table of Contents
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Deployment](#deployment)
@@ -59,3 +58,45 @@ Welcome to my personal portfolio website! This site showcases my skills, project
 ### Development Tools:
 - ESLint (v8.38.0) for code linting
 - Prettier (v2.8.8) for code formatting
+
+## Usage
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/tilakpatel/portfolio.git
+    cd portfolio
+    ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Run the development server:
+    ```bash
+    npm run dev
+    ```
+
+4. Open your browser and visit `http://localhost:3000` to see the website.
+
+## Project Structure
+```plaintext
+portfolio/
+├── public/
+│   ├── favicon.ico
+│   └── index.html
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Navbar.js
+│   │   ├── Home.js
+│   │   ├── Experience.js
+│   │   ├── Projects.js
+│   │   ├── Resume.js
+│   │   └── Contact.js
+│   ├── App.js
+│   ├── index.css
+│   └── main.jsx
+├── .eslintrc.js
+├── .prettierrc
+├── package.json
+└── vite.config.js
