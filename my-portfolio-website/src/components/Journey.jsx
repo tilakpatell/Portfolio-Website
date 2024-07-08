@@ -27,18 +27,18 @@ const TimelineItem = ({ date, title, description, index }) => {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={itemVariants}
-      className={`flex ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'} items-center mb-8`}
+      className={`flex items-center mb-8 ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}
     >
-      <div className="w-1/2 px-4">
-        <div className={`p-4 rounded-lg shadow-lg ${index % 2 === 0 ? 'bg-purple-600' : 'bg-blue-600'}`}>
+      <div className="w-5/12">
+        <div className={`p-4 rounded-lg shadow-lg ${index % 2 === 0 ? 'bg-purple-600 ml-auto' : 'bg-blue-600'} max-w-sm`}>
           <h3 className="text-xl font-bold text-white">{title}</h3>
           <p className="text-white text-sm mt-2">{description}</p>
         </div>
       </div>
-      <div className="w-1/2 flex justify-center">
+      <div className="w-2/12 flex justify-center">
         <div className="w-4 h-4 bg-white rounded-full border-4 border-purple-500 z-10"></div>
       </div>
-      <div className="w-1/2 px-4 flex justify-center">
+      <div className={`w-5/12 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
         <div className="text-lg font-bold text-purple-400">{date}</div>
       </div>
     </motion.div>
@@ -75,26 +75,26 @@ function CodingJourneyTimeline() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="mt-40 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20"
+      className="mt-20 md:mt-40 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20"
     >
-      <div className="relative flex justify-center items-center my-16">
+      <div className="relative flex justify-center items-center my-8 md:my-16">
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.2, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="absolute w-full max-w-3xl h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg z-0"
+          className="absolute w-full max-w-3xl h-16 md:h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg z-0"
         ></motion.div>
         <motion.h2
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-4xl sm:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4 py-2"
+          className="text-3xl md:text-4xl lg:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4 py-2"
         >
           My Coding Journey
         </motion.h2>
       </div>
 
-      <div className="relative">
+      <div className="relative mt-16">
         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-purple-300"></div>
         <div className="relative z-10">
           {journeyData.map((item, index) => (
@@ -106,7 +106,7 @@ function CodingJourneyTimeline() {
           ))}
         </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
-          <div className="w-6 h-6 bg-purple-500 rounded-full border-4 border-white z-20 relative"></div>
+          <div className="w-6 h-6 bg-purple-500 rounded-full border-4 border-white z-20"></div>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ function CodingJourneyTimeline() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="mt-12 flex justify-center space-x-8"
+        className="mt-12 flex justify-center space-x-4 md:space-x-8"
       >
         {socialLinks.map((link, index) => (
           <motion.button
@@ -122,7 +122,7 @@ function CodingJourneyTimeline() {
             onClick={() => handleSocialClick(link.url)}
             whileHover={{ scale: 1.2, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
-            className={`text-4xl bg-gradient-to-r ${link.gradient} p-3 rounded-full text-white shadow-lg`}
+            className={`text-2xl md:text-4xl bg-gradient-to-r ${link.gradient} p-2 md:p-3 rounded-full text-white shadow-lg`}
           >
             <link.icon />
           </motion.button>

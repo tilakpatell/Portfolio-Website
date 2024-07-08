@@ -99,7 +99,6 @@ function Projects() {
         ))}
       </motion.div>
 
-      {/* GitHub Calendar Section */}
       <motion.div
         className="mt-20"
         variants={containerVariants}

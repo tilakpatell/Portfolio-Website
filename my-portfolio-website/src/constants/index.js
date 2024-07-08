@@ -2,62 +2,60 @@ import picture1 from '../assets/picture1.jpeg';
 import website from '../assets/website.png';
 import floodit from '../assets/floodit.jpeg';
 
+export const ABOUT_TEXT = `I'm Tilak Patel, a passionate Computer Science major at Northeastern University with minors in Computer Engineering and Robotics. My technical skills include Java, Python, JavaScript, SQL, and React, and I have experience in developing web applications, optimizing data management systems, and conducting research on privacy concerns with voice assistants. I've worked as a Network and Software Engineer Intern at GreenTree Capital, enhancing application efficiency and user experience. My projects include a Co-Op search web app, a FloodIt game, and a Portfolio website, showcasing my proficiency in full-stack development and automation.
 
-export const ABOUT_TEXT = `I am Tilak Patel, a dedicated and versatile Computer Science major at Northeastern University with minors in Computer Engineering and Robotics. My technical skills include Java, Python, JavaScript, and React, and I have a proven track record in developing web applications, optimizing data management systems, and conducting research on privacy concerns related to voice assistants. My professional experience includes working as a Network and Software Engineer Intern at GreenTree Capital, where I enhanced application efficiency and user experience. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. 
-Beyond my professional pursuits, I am passionate about pop culture, especially Star Wars, Marvel, and The Boys. I'm a videogame nerd and an avid foodie with a special love for pizza. In my spare time, I enjoy exploring new technologies, contributing to open-source projects, and immersing myself in the latest movies and TV shows.`;
+Beyond my professional pursuits, I'm a tech enthusiast with a love for pop culture, especially Star Wars, Marvel, and The Boys. I'm an avid gamer and food lover, with a special affinity for pizza. In my spare time, I enjoy exploring new technologies, contributing to open-source projects, and immersing myself in the latest movies and TV shows.`;
 
 export const EXPERIENCES = [
   {
     year: "June 2024 - Present",
     role: "Network and Software Engineer Intern",
     company: "GreenTree Capital and Asset Management",
-    description: `Used Power Automate to handle API calls, improving application efficiency. Optimized CRM, Microsoft SharePoint, Teams, and Office 365 systems, enhancing data management. Developed React.js applications for the corporate website, significantly improving user experience and functionality. Designed and implemented remote management and backup solutions, managed virtual machines and Azure directories, and automated database processes using Python and Linux.`,
-    technologies: ["JavaScript", "React.js", "Python", "Power Automate", "Azure"],
+    description: `Implemented Auth0, enhancing security and streamlining user access. Optimized React.js applications, increasing user engagement by 20%. Utilized Postman for API documentation and automated testing of endpoints. Collaborated in fast-paced development, improving code quality through peer reviews. Conducted cross-functional testing, enhancing application stability.`,
+    technologies: ["React.js", "Auth0", "Postman", "API Testing"],
   },
   {
-    year: "May 2024 - Present",
+    year: "Jan. 2024 - Present",
     role: "Undergraduate Research Assistant",
     company: "Mon(IoT)r Lab, Northeastern University",
-    description: `Conduct research on privacy concerns related to voice assistants, focusing on user interactions and profiling activities. Perform risk assessments associated with profiling and evaluate the transparency of privacy policy disclosures using data-driven approaches. Design and implement user profiles to simulate diverse interactions; develop automated scripts in Selenium, Python, and Bash to collect and analyze data. Collaborate with interdisciplinary teams to advance research methodologies.`,
-    technologies: ["Python", "Selenium", "Bash", "Data Analysis"],
+    description: `Engineered Python scripts automating data collection for privacy research. Implemented RESTful API integration, improving data gathering efficiency by 20%. Developed robust audio file processing system using OS operations. Designed rate limiting and error handling solutions for web scraping. Utilized multithreading for concurrent API requests and file operations.`,
+    technologies: ["Python", "RESTful API", "Web Scraping", "Multithreading"],
   },
   {
-    year: "June 2023 - September 2023",
-    role: "IT and PR Volunteer",
+    year: "June 2023 - Sept. 2023",
+    role: "IT and PR Intern",
     company: "BAPS Swaminarayan Akshardham",
-    description: `Spearheaded guest services and guided tours at Swaminarayan Akshardham, blending technical proficiency with interpersonal skills. Authored and edited comprehensive reports, leveraging Python scripting to streamline operations and enhance efficiency. Utilized Microsoft tools, including Power Automate and Microsoft 365, to optimize workflow and enhance organizational communication.`,
-    technologies: ["Python", "Power Automate", "Microsoft 365"],
+    description: `Developed Python scripts for operational reporting, reducing process times by 15%. Optimized internal workflows using Microsoft 365 and Power Automate, decreasing administrative overhead by 20%. Created centralized knowledge base, reducing inquiry response time by 50%. Drove an increase in online engagement through social media strategy development.`,
+    technologies: ["Python", "Microsoft 365", "Power Automate", "Social Media Strategy"],
   },
 ];
 
-
 export const PROJECTS = [
   {
-    title: "Co-OpSearcher Website",
+    title: "Co-OpSearcher Web App",
     image: picture1,
     link: "https://github.com/shreyaanpathak/co-opsearcher",
-    description: `Collaborating on the development of a full-stack Co-Op/Internship web scraper and web application using Flask to serve a REST API with React as the frontend.`,
-    technologies: ["Python", "Flask", "React", "Selenium", "ChatGPT API"],
+    description: `A full-stack application that automates internship search using Flask API and React frontend. Features intelligent job matching with ChatGPT API integration.`,
+    technologies: ["Python", "Flask", "React", "Vite", "Selenium", "ChatGPT API", "Tailwind CSS", "Framer Motion"],
   },
   {
     title: "FloodIt Game",
     image: floodit,
     link: "https://github.com/tilakpatell/FloodItGame",
-    description: `Recreated the game FloodIt in Java. Enhanced gameplay mechanics and user interface by implementing scoreboard and fun gimmicks.`,
-    technologies: ["Java"],
+    description: `A Java-based implementation of the FloodIt game, featuring efficient board-handling algorithms and a custom flood-fill algorithm for optimized game state management.`,
+    technologies: ["Java", "OOP", "Algorithm Design"],
   },
   {
-    title: "Tilak's Portfolio",
+    title: "Personal Portfolio",
     image: website,
     link: "https://github.com/tilakpatell/Portfolio-Website",
-    description: `Developed a Portfolio Website. Enhanced user interaction with dynamic and responsive design.`,
-    technologies: ["React", "Framer", "TailWind CSS", "JavaScript", "HTML", "Git"],
+    description: `A responsive personal portfolio website built with React and Vite, showcasing projects and skills with modern UI design and smooth animations.`,
+    technologies: ["React", "Vite", "Framer Motion", "Tailwind CSS", "Git"],
   }
 ];
 
-
 export const CONTACT = {
-  address: "Syracuse, NY",
+  address: "Boston, MA",
   phoneNo: "315-720-8202",
   email: "tilakny@gmail.com",
 };

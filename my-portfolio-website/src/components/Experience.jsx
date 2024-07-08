@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { EXPERIENCES } from 'C:/Users/tilak/Documents/Python/Portfolio Website/my-portfolio-website/src/constants/index.js';
 import { FaBriefcase, FaCalendar, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import {
@@ -40,41 +40,82 @@ const TechStack = () => {
 const ExperienceCard = ({ experience }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const cardVariants = {
+    closed: { height: 'auto' },
+    open: { height: 'auto' }
+  };
+
+  const contentVariants = {
+    closed: { opacity: 0, y: -20 },
+    open: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.3 } }
+  };
+
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
+      layout
+      initial="closed"
+      animate={isOpen ? "open" : "closed"}
+      variants={cardVariants}
+      transition={{ duration: 0.3 }}
       className="bg-gradient-to-r from-purple-900 to-blue-900 rounded-lg shadow-lg overflow-hidden mb-8"
     >
-      <div 
+      <motion.div 
         className="p-6 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center">
+        <div className="flex flex-col items-center justify-center mb-4">
+          <div className="flex items-center mb-2">
             <FaBriefcase className="text-blue-300 mr-2" />
-            <h3 className="text-xl font-bold text-white">{experience.role}</h3>
+            <h3 className="text-xl font-bold text-white text-center">{experience.role}</h3>
           </div>
-          {isOpen ? <FaChevronUp className="text-blue-300" /> : <FaChevronDown className="text-blue-300" />}
+          <h4 className="text-lg font-semibold text-blue-300 text-center">{experience.company}</h4>
         </div>
-        <h4 className="text-lg font-semibold text-blue-300 mb-2">{experience.company}</h4>
-        <div className="flex items-center mb-4 text-gray-300">
+        <div className="flex items-center justify-center mb-4 text-gray-300">
           <FaCalendar className="mr-2" />
           <span>{experience.year}</span>
         </div>
-      </div>
-      
-      {isOpen && (
-        <div className="px-6 pb-6">
-          <p className="text-gray-300 mb-4">{experience.description}</p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {experience.technologies.map((tech, index) => (
-              <span key={index} className="bg-blue-800 text-blue-200 px-2 py-1 rounded text-sm">
-                {tech}
-              </span>
-            ))}
-          </div>
+        <div className="flex justify-center">
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <FaChevronDown className="text-blue-300" />
+          </motion.div>
         </div>
-      )}
+      </motion.div>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={contentVariants}
+            className="px-6 pb-6"
+          >
+            <p className="text-gray-300 mb-4 text-center">{experience.description}</p>
+            <motion.div 
+              className="flex flex-wrap gap-2 mb-4 justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, staggerChildren: 0.1 }}
+            >
+              {experience.technologies.map((tech, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-blue-800 text-blue-200 px-2 py-1 rounded text-sm"
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
@@ -95,7 +136,12 @@ const Experience = () => {
   ];
 
   return (
-    <div className="mt-8 sm:mt-16">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="mt-8 sm:mt-16"
+    >
       <div className="relative flex justify-center items-center my-8 sm:my-16">
         <div className="absolute w-full max-w-3xl h-16 sm:h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg opacity-20"></div>
         <h2 className='text-4xl sm:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4'>
@@ -111,7 +157,7 @@ const Experience = () => {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
