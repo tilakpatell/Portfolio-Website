@@ -114,7 +114,7 @@ function HeroSection() {
                   className="max-w-xl py-3 font-bold tracking-tighter text-sm sm:text-base text-neutral-300"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <ParagraphEffect words={TILAK_DESC} />
+                  {TILAK_DESC[0]}
                 </motion.p>
               </div>
             </motion.div>
