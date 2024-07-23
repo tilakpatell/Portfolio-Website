@@ -8,18 +8,25 @@ Beyond my professional pursuits, I'm a tech enthusiast with a love for pop cultu
 
 export const EXPERIENCES = [
   {
-    year: "June 2024 - Present",
-    role: "Network and Software Engineer Intern",
-    company: "GreenTree Capital and Asset Management",
-    description: `Implemented Auth0, enhancing security and streamlining user access. Optimized React.js applications, increasing user engagement by 20%. Utilized Postman for API documentation and automated testing of endpoints. Collaborated in fast-paced development, improving code quality through peer reviews. Conducted cross-functional testing, enhancing application stability.`,
-    technologies: ["React.js", "Auth0", "Postman", "API Testing"],
+    year: "July 2024 – Present",
+    role: "Generative AI Intern",
+    company: "Empowerreg AI",
+    description: `Engineered visualizations for the Risk Annotation Matrix Product, enhancing data interpretation. Integrated and parsed Generative AI model data with Pandas, Seaborn, and React.js. Created a Risk Assessment Matrix graph with Material UI to facilitate real-time data analysis for clients. Collaborated with senior machine learning engineers to refine visual data and ensure accuracy.`,
+    technologies: ["Pandas", "Seaborn", "React.js", "Material UI", "Generative AI"],
   },
   {
-    year: "Jan. 2024 - Present",
+    year: "Jan. 2024 – Present",
     role: "Undergraduate Research Assistant",
     company: "Mon(IoT)r Lab, Northeastern University",
-    description: `Engineered Python scripts automating data collection for privacy research. Implemented RESTful API integration, improving data gathering efficiency by 20%. Developed robust audio file processing system using OS operations. Designed rate limiting and error handling solutions for web scraping. Utilized multithreading for concurrent API requests and file operations.`,
-    technologies: ["Python", "RESTful API", "Web Scraping", "Multithreading"],
+    description: `Automated data collection for privacy research with Python scripts. Improved data gathering efficiency via RESTful API integration. Increased processing speed with multithreading for requests. Led voice assistant experiments (Google Assistant, Amazon Alexa), focusing on privacy and user interaction analysis.`,
+    technologies: ["Python", "RESTful API", "Multithreading", "Voice Assistants"],
+  },
+  {
+    year: "June 2024 – July 2024",
+    role: "Software Engineer Intern",
+    company: "GreenTree Capital and Asset Management",
+    description: `Implemented Auth0, enhancing security and user access. Optimized React.js applications for user engagement, contributing as a volunteer. Ensured robust APIs with Postman documentation and testing. Collaborated with various interns to troubleshoot and build authentication for a React website.`,
+    technologies: ["Auth0", "React.js", "Postman", "API Testing"],
   },
   {
     year: "June 2023 - Sept. 2023",
@@ -27,8 +34,8 @@ export const EXPERIENCES = [
     company: "BAPS Swaminarayan Akshardham",
     description: `Developed Python scripts for operational reporting, reducing process times by 15%. Optimized internal workflows using Microsoft 365 and Power Automate, decreasing administrative overhead by 20%. Created centralized knowledge base, reducing inquiry response time by 50%. Drove an increase in online engagement through social media strategy development.`,
     technologies: ["Python", "Microsoft 365", "Power Automate", "Social Media Strategy"],
-  },
-];
+  }
+]
 
 export const PROJECTS = [
   {

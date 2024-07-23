@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { EXPERIENCES } from 'C:/Users/tilak/Documents/Python/Portfolio Website/my-portfolio-website/src/constants/index.js';
-import { FaBriefcase, FaCalendar, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { EXPERIENCES } from 'C:/Users/tilak/Documents/Projects/Portfolio Website/my-portfolio-website/src/constants/index.js';
+import { FaBriefcase, FaCalendar, FaChevronDown } from 'react-icons/fa';
 import {
   DiJavascript1,
   DiReact,
@@ -121,19 +121,16 @@ const ExperienceCard = ({ experience }) => {
 };
 
 const Experience = () => {
-  const brightonLiquorsExp = {
-    year: "Feb 2023 - Jun 2023",
-    role: "Sales & IT Associate",
-    company: "Brighton Liquors",
-    description: "As an employee of a liquor store, I gained valuable experience in customer service and sales in a fast-paced retail environment. I also maintained POS and computer systems and installed security software. I developed strong communication skills as I interacted with a diverse customer base, including those with different preferences and needs.",
-    technologies: ["Customer Service", "Inventory Management", "POS Systems", "Microsoft Office", "Python"],
-  };
+  const sortedExperiences = EXPERIENCES.sort((a, b) => {
+    const getEndYear = (year) => {
+      const years = year.split('-');
+      return parseInt(years[years.length - 1]);
+    };
 
-  const experiences = [
-    ...EXPERIENCES.filter(exp => exp.company === "GreenTree Capital and Asset Management"),
-    ...EXPERIENCES.filter(exp => exp.company !== "GreenTree Capital and Asset Management"),
-    brightonLiquorsExp
-  ];
+    const aYear = getEndYear(a.year);
+    const bYear = getEndYear(b.year);
+    return bYear - aYear;
+  });
 
   return (
     <motion.div 
@@ -150,7 +147,7 @@ const Experience = () => {
       </div>
       <TechStack />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 mt-8 px-4 sm:px-0">
-        {experiences.map((experience, index) => (
+        {sortedExperiences.map((experience, index) => (
           <ExperienceCard 
             key={index} 
             experience={experience} 
