@@ -54,7 +54,7 @@ function CodingJourneyTimeline() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="mt-20 md:mt-40 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20"
+      className="mt-20 md:mt-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20"
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
