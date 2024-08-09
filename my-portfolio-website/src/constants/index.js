@@ -1,7 +1,7 @@
 import picture1 from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/picture1.jpeg';
 import website from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/website.png';
 import pytorch from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/pytorch.png';
-import empowerregLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/Screenshot 2024-08-08 at 2.25.19 PM.png';
+import empowerregLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/empower.png';
 import neuLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/neulogo.png';
 import greentreeLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/greentreelogo.jpeg';
 import akdmLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/logoakdm.jpg';
