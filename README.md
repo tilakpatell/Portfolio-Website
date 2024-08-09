@@ -1,6 +1,6 @@
 # Tilak Patel's Personal Portfolio Website
 # www.tilakpatell.com
-![Screenshot of my portfolio website](website.png)
+![Screenshot of my portfolio website](
 
 Welcome to my personal portfolio website! This site showcases my skills, projects, experiences, and interests in a dynamic and interactive manner. Below, I've included detailed information about the site's features, technologies used, and installation instructions.
 
