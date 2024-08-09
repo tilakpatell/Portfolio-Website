@@ -1,6 +1,17 @@
-import picture1 from '../assets/picture1.jpeg';
-import website from '../assets/website.png';
-import floodit from '../assets/floodit.jpeg';
+import picture1 from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/picture1.jpeg';
+import website from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/website.png';
+import pytorch from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/pytorch.png';
+import empowerregLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/Screenshot 2024-08-08 at 2.25.19 PM.png';
+import neuLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/neulogo.png';
+import greentreeLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/greentreelogo.jpeg';
+import akdmLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/logoakdm.jpg';
+import javaLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/javalogo.png';
+import pythonLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/pythonlogo.png';
+import jsLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/jslogo.png';
+import reactLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/react.webp';
+import githubLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/githublogo.png';
+import gitLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/gitlogo.png';
+import cppLogo from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/assets/cpp_logo.png';
 
 export const ABOUT_TEXT = `I'm Tilak Patel, a passionate Computer Science major at Northeastern University with minors in Computer Engineering and Robotics. My technical skills include Java, Python, JavaScript, SQL, and React, and I have experience in developing web applications, optimizing data management systems, and conducting research on privacy concerns with voice assistants. I've worked as a Network and Software Engineer Intern at GreenTree Capital, enhancing application efficiency and user experience. My projects include a Co-Op search web app, a FloodIt game, and a Portfolio website, showcasing my proficiency in full-stack development and automation.
 
@@ -8,6 +19,7 @@ Beyond my professional pursuits, I'm a tech enthusiast with a love for pop cultu
 
 export const EXPERIENCES = [
   {
+    logo: empowerregLogo,
     year: "July 2024 – Present",
     role: "Generative AI Intern",
     company: "Empowerreg AI",
@@ -15,13 +27,15 @@ export const EXPERIENCES = [
     technologies: ["Pandas", "Seaborn", "React.js", "Material UI", "Generative AI"],
   },
   {
-    year: "Jan. 2024 – Present",
+    logo: neuLogo,
+    year: "January 2024 – Present",
     role: "Undergraduate Research Assistant",
     company: "Mon(IoT)r Lab, Northeastern University",
     description: `Automated data collection for privacy research with Python scripts. Improved data gathering efficiency via RESTful API integration. Increased processing speed with multithreading for requests. Led voice assistant experiments (Google Assistant, Amazon Alexa), focusing on privacy and user interaction analysis.`,
     technologies: ["Python", "RESTful API", "Multithreading", "Voice Assistants"],
   },
   {
+    logo: greentreeLogo,
     year: "June 2024 – July 2024",
     role: "Software Engineer Intern",
     company: "GreenTree Capital and Asset Management",
@@ -29,35 +43,60 @@ export const EXPERIENCES = [
     technologies: ["Auth0", "React.js", "Postman", "API Testing"],
   },
   {
+    logo: akdmLogo,
     year: "June 2023 - Sept. 2023",
     role: "IT and PR Intern",
     company: "BAPS Swaminarayan Akshardham",
     description: `Developed Python scripts for operational reporting, reducing process times by 15%. Optimized internal workflows using Microsoft 365 and Power Automate, decreasing administrative overhead by 20%. Created centralized knowledge base, reducing inquiry response time by 50%. Drove an increase in online engagement through social media strategy development.`,
     technologies: ["Python", "Microsoft 365", "Power Automate", "Social Media Strategy"],
   }
-]
+];
 
 export const PROJECTS = [
   {
+    id: 1,
     title: "Co-OpSearcher Web App",
+    shortDescription: "Automated internship search application",
     image: picture1,
     link: "https://github.com/shreyaanpathak/co-opsearcher",
-    description: `A full-stack application that automates internship search using Flask API and React frontend. Features intelligent job matching with ChatGPT API integration.`,
+    description: "A full-stack application that automates the internship search process, leveraging Flask API and React.js for a seamless user experience.",
     technologies: ["Python", "Flask", "React", "Vite", "Selenium", "ChatGPT API", "Tailwind CSS", "Framer Motion"],
+    features: [
+      "Full-stack architecture with Flask backend and React frontend",
+      "AI-powered job matching using ChatGPT API",
+      "Efficient web scraping with Selenium",
+      "Enhanced UX with Framer Motion animations"
+    ]
   },
   {
-    title: "FloodIt Game",
-    image: floodit,
-    link: "https://github.com/tilakpatell/FloodItGame",
-    description: `A Java-based implementation of the FloodIt game, featuring efficient board-handling algorithms and a custom flood-fill algorithm for optimized game state management.`,
-    technologies: ["Java", "OOP", "Algorithm Design"],
+    id: 2,
+    title: "Smart Summarization Tool",
+    shortDescription: "NLP-based text summarization using BERT",
+    image: pytorch,
+    link: "https://github.com/tilakpatell/smart-summarizer-bert",
+    description: "An advanced NLP tool that utilizes BERT for efficient and accurate text summarization, optimized for performance and scalability.",
+    technologies: ["Python", "PyTorch", "BERT", "Transformers", "Google Colab", "Seaborn", "Matplotlib"],
+    features: [
+      "BERT-based model for high-quality summarization",
+      "Optimized data pipeline processing 287,113 samples",
+      "Mixed precision training and gradient accumulation",
+      "Fine-tuned using Hugging Face Transformers library"
+    ]
   },
   {
+    id: 3,
     title: "Personal Portfolio",
+    shortDescription: "Responsive showcase of skills and projects",
     image: website,
     link: "https://github.com/tilakpatell/Portfolio-Website",
-    description: `A responsive personal portfolio website built with React and Vite, showcasing projects and skills with modern UI design and smooth animations.`,
+    description: "A modern, responsive portfolio website built to showcase my projects and skills, emphasizing performance and user experience.",
     technologies: ["React", "Vite", "Framer Motion", "Tailwind CSS", "Git"],
+    features: [
+      "Optimized performance with React and Vite",
+      "Engaging animations using Framer Motion",
+      "Sleek, responsive design with Tailwind CSS",
+      "Version control and CI practices with Git"
+    ]
   }
 ];
 
@@ -66,3 +105,13 @@ export const CONTACT = {
   phoneNo: "315-720-8202",
   email: "tilakny@gmail.com",
 };
+
+export const TECH_STACK = [
+  { icon: pythonLogo, name: 'Python'},
+  { icon: javaLogo ,name: 'Java'},
+  { icon: jsLogo, name: 'JavaScript' },
+  { icon: reactLogo, name: 'React' },
+  { icon: githubLogo, name: 'GitHub' },
+  { icon: gitLogo, name: 'Git' },
+  { icon: cppLogo, name: 'C++' },
+];

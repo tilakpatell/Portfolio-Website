@@ -1,109 +1,205 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTransition, animated } from '@react-spring/web';
+import { Tab } from '@headlessui/react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { FaReact, FaPython, FaJava, FaAws, FaLink } from 'react-icons/fa';
+import { SiFlask, SiFastapi, SiPytorch, SiTailwindcss, SiJavascript } from 'react-icons/si';
+import { Link } from 'react-router-dom';
 
-import aboutImg1 from '../assets/aboutImg1.jpg';
-import aboutImg2 from '../assets/aboutImg2.jpg';
-import aboutImg3 from '../assets/aboutImg3.jpg';
-import aboutImg4 from '../assets/aboutImg4.jpg';
+import profilePicture from '../assets/pic.jpg'; 
 
 function AboutMe() {
-  const [index, setIndex] = useState(0);
-  const images = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [images.length]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const transitions = useTransition(images[index], {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: { duration: 1000 },
-  });
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-  return (
-    <div className="mt-20 md:mt-40 mb-20">
-      <div className="relative flex justify-center items-center my-8 md:my-16">
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.2, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="absolute w-full max-w-3xl h-16 md:h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg z-0"
-        ></motion.div>
-        <motion.h2
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-4xl sm:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4 py-2"
-        >
-          About Me
-        </motion.h2>
-      </div>
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
 
-      <div className="relative overflow-hidden bg-black p-4 sm:p-8 rounded-3xl">
-        {/* Rounded purple background */}
-        <div className="absolute inset-4 sm:inset-8 rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800 opacity-20"></div>
-          <motion.div
-            className="absolute inset-0"
-            animate={{
-              backgroundPosition: ['0% 0%', '100% 100%'],
-              backgroundSize: ['100% 100%', '200% 200%'],
-            }}
-            transition={{
-              repeat: Infinity,
-              repeatType: 'reverse',
-              duration: 20,
-            }}
-            style={{
-              backgroundImage: 'url("data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%239C92AC" fill-opacity="0.1" fill-rule="evenodd"/%3E%3C/svg%3E")',
-            }}
-          />
+  const tabContents = [
+    {
+      title: "About Me",
+      content: (
+        <div className="space-y-4 text-gray-200">
+          <p>
+            Hello! I'm Tilak Patel, a Computer Science & AI major at Northeastern University, passionate about pushing the boundaries of technology. With minors in Computer Engineering and Robotics, I'm not just coding – I'm crafting the future, one algorithm at a time.
+          </p>
+          <p>
+            As a Generative AI Intern at Empowerreg AI, I'm diving deep into the world of AI, working on cutting-edge projects that merge technology with real-world applications. My experience spans from developing production-ready visualizations to implementing advanced NLP tools.
+          </p>
+          <p>
+            When I'm not immersed in code, you might find me experimenting with fusion cuisine, engaging in high-intensity interval training, or losing myself in the pages of the latest sci-fi novel. I'm always eager to learn and take on new challenges in the ever-evolving tech landscape.
+          </p>
         </div>
-
-        <div className='flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
-          <motion.div 
-            className='w-full lg:w-3/5 p-6'
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            <div className='items-center justify-center flex relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl'>
-              {transitions((style, item) => (
-                <animated.img
-                  src={item}
-                  alt="About Me"
-                  style={{ ...style, position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}
-                />
+      )
+    },
+    {
+      title: "Projects",
+      content: (
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-xl font-bold text-white mb-2">Co-OpSearcher Web App</h3>
+            <p className="text-gray-300 mb-2">A full-stack application to automate internship search using Flask API and React.js</p>
+            <div className="flex space-x-2 mb-2">
+              {[FaPython, FaReact, SiFlask, SiTailwindcss].map((Icon, index) => (
+                <Icon key={index} className="text-2xl text-purple-400" />
               ))}
             </div>
-          </motion.div>
-          <motion.div
-            className='w-full lg:w-2/5 p-6'
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            <div className='text-lg leading-relaxed text-gray-300 bg-opacity-80 bg-purple-900 p-8 rounded-lg shadow-2xl'>
-              <p className='mb-4'>
-                Hey there! 👋 I'm Tilak Patel, a passionate Computer Science major at Northeastern University, with minors in Computer Engineering and Robotics. 🎮🍕🌟
-              </p>
-              <p className='mb-4'>When I'm not busy coding or tinkering with tech, you'll find me:</p>
-              <ul className='list-disc list-inside mb-4 space-y-2'>
-                <li>Geeking out over pop culture! 🎬 I'm a huge fan of Star Wars, Marvel, and The Boys. </li>
-                <li>Gaming till the wee hours! 🎮, I'm always ready to level up and take on new challenges.</li>
-              </ul>
-              <p className='mb-4'>
-                I've also had the amazing experience of volunteering at Swaminarayan Akshardham, which has deepened my cultural understanding and reinforced the importance of giving back to the community. 🌍❤️
-              </p>
+            <SyntaxHighlighter language="python" style={dracula}>
+              {`from flask import Flask, jsonify
+from selenium import webdriver
+import openai
+
+app = Flask(__name__)
+
+@app.route('/search_jobs')
+def search_jobs():
+    # Web scraping logic here
+    jobs = scrape_jobs()
+    
+    # Use ChatGPT API for job matching
+    matched_jobs = match_jobs_with_ai(jobs)
+    
+    return jsonify(matched_jobs)
+
+if __name__ == '__main__':
+    app.run(debug=True)`}
+            </SyntaxHighlighter>
+            <Link to="../projects/" className="inline-block mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors">
+              View Project Details
+            </Link>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-white mb-2">Smart Summarization NLP & ML Tool</h3>
+            <p className="text-gray-300 mb-2">Advanced NLP tool using BERT for efficient text summarization</p>
+            <div className="flex space-x-2 mb-2">
+              {[FaPython, SiPytorch].map((Icon, index) => (
+                <Icon key={index} className="text-2xl text-purple-400" />
+              ))}
             </div>
-          </motion.div>
+            <SyntaxHighlighter language="python" style={dracula}>
+              {`import torch
+from transformers import BertTokenizer, BertForSequenceClassification
+
+model = BertForSequenceClassification.from_pretrained('bert-base-uncased')
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+
+def summarize_text(text):
+    inputs = tokenizer(text, return_tensors="pt", max_length=512, truncation=True)
+    outputs = model(**inputs)
+    summary_ids = outputs.logits.argmax(-1)
+    return tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+
+# Example usage
+text = "Your long text here..."
+summary = summarize_text(text)
+print(summary)`}
+            </SyntaxHighlighter>
+            <Link to="../projects/" className="inline-block mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors">
+              View Project Details
+            </Link>
+          </div>
         </div>
-      </div>
+      )
+    },
+    {
+      title: "Skills",
+      content: (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {[
+            { name: "Python", icon: FaPython, level: "Fluent" },
+            { name: "Java", icon: FaJava, level: "Fluent" },
+            { name: "JavaScript", icon: SiJavascript, level: "Intermediate" },
+            { name: "React", icon: FaReact, level: "Intermediate" },
+            { name: "Flask", icon: SiFlask, level: "Intermediate" },
+            { name: "FastAPI", icon: SiFastapi, level: "Intermediate" },
+            { name: "AWS", icon: FaAws, level: "Familiar" },
+            { name: "PyTorch", icon: SiPytorch, level: "Intermediate" },
+            { name: "Tailwind CSS", icon: SiTailwindcss, level: "Intermediate" },
+          ].map((skill, index) => (
+            <div key={index} className="bg-purple-800 bg-opacity-50 p-4 rounded-lg flex flex-col items-center">
+              <skill.icon className="text-4xl mb-2 text-purple-400" />
+              <h3 className="text-lg font-bold text-white">{skill.name}</h3>
+              <p className="text-sm text-gray-300">{skill.level}</p>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  ];
+
+  return (
+    <div className="min-h-screen py-20 px-4">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="max-w-6xl mx-auto"
+      >
+        <motion.h2 variants={itemVariants} className="text-5xl sm:text-6xl font-bold mb-12 text-center text-white">
+          <span className='text-purple-700'>&lt;/About</span> Tilak&gt;
+          <div className="h-1 w-60 bg-gradient-to-r from-purple-400 via-blue-500 to-purple-500 mx-auto m-4 rounded-full "></div>
+        </motion.h2>
+
+        <motion.div variants={itemVariants} className="mb-8 flex justify-center">
+          <img src={profilePicture} alt="Tilak Patel" className="w-48 h-48 rounded-full object-cover shadow-lg" />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mb-8">
+          <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+            <Tab.List className="flex space-x-1 rounded-xl bg-purple-900/20 p-1 mb-4">
+              {tabContents.map((tab, index) => (
+                <Tab
+                  key={index}
+                  className={({ selected }) =>
+                    `w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-white
+                    ${selected
+                      ? 'bg-purple-600 shadow'
+                      : 'hover:bg-white/[0.12] hover:text-white'
+                    }`
+                  }
+                >
+                  {tab.title}
+                </Tab>
+              ))}
+            </Tab.List>
+            <Tab.Panels>
+              <AnimatePresence mode="wait">
+                {tabContents.map((tab, index) => (
+                  <Tab.Panel
+                    key={index}
+                    as={motion.div}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="rounded-xl bg-purple-900/20 p-6 text-gray-200"
+                  >
+                    {tab.content}
+                  </Tab.Panel>
+                ))}
+              </AnimatePresence>
+            </Tab.Panels>
+          </Tab.Group>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

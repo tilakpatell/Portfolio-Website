@@ -1,191 +1,116 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useDragControls } from 'framer-motion';
-import personallogo from '../assets/file.png';
-import { FaGithub, FaLinkedin, FaInstagram, FaBars } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import personallogo from '../assets/logo.png';
+import { FaHome, FaUser, FaBriefcase, FaProjectDiagram, FaFileAlt, FaRocket, FaBars, FaTimes } from 'react-icons/fa';
+
+const navItems = [
+  { name: 'Home', icon: FaHome, path: '/' },
+  { name: 'About', icon: FaUser, path: '/about' },
+  { name: 'Experience', icon: FaBriefcase, path: '/experience' },
+  { name: 'Projects', icon: FaProjectDiagram, path: '/projects' },
+  { name: 'Resume', icon: FaFileAlt, path: '/resume' },
+  { name: 'Journey', icon: FaRocket, path: '/journey' }
+];
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [typewriterText, setTypewriterText] = useState('');
-  const greetings = ['Hi!', 'Hello!', 'Hola!', 'Bonjour!', 'Swagatam!', 'Namaste!', "Jai Shri Krishna!", "Jai Swaminarayan!", "What's good!"];
-  const [currentGreetingIndex, setCurrentGreetingIndex] = useState(0);
-  const dragControls = useDragControls();
-  const buttonRef = useRef(null);
-  const [buttonPosition, setButtonPosition] = useState(() => {
-    const saved = localStorage.getItem('sidebarButtonPosition');
-    return saved ? JSON.parse(saved) : { y: window.innerHeight / 2 };
-  });
-
-  const navItems = [
-    { name: 'Intro', emoji: '👋', id: 'intro' },
-    { name: 'About', emoji: '👨‍💻', id: 'about' },
-    { name: 'Experiences', emoji: '🚀', id: 'experiences' },
-    { name: 'Projects', emoji: '🌟', id: 'projects' },
-    { name: 'Resume', emoji: '📄', id: 'resume' },
-    { name: 'Journey', emoji: '😎', id: 'journey'}
-  ];
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
-    const typeWriter = (text, i = 0) => {
-      if (i < text.length) {
-        setTypewriterText(text.substring(0, i + 1));
-        setTimeout(() => typeWriter(text, i + 1), 100);
-      } else {
-        setTimeout(() => {
-          setTypewriterText('');
-          setCurrentGreetingIndex((prevIndex) => (prevIndex + 1) % greetings.length);
-        }, 4000);
-      }
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.documentElement.scrollHeight - windowHeight;
+      const progress = (scrollPosition / fullHeight) * 100;
+      setScrollProgress(progress);
     };
 
-    typeWriter(greetings[currentGreetingIndex]);
-  }, [currentGreetingIndex]);
-
-  useEffect(() => {
-    localStorage.setItem('sidebarButtonPosition', JSON.stringify(buttonPosition));
-  }, [buttonPosition]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (buttonRef.current) {
-        const buttonHeight = buttonRef.current.offsetHeight;
-        const maxY = window.innerHeight - buttonHeight;
-        setButtonPosition(prev => ({
-          y: Math.min(Math.max(prev.y, 0), maxY)
-        }));
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleDragEnd = (event, info) => {
-    if (buttonRef.current) {
-      const buttonHeight = buttonRef.current.offsetHeight;
-      const maxY = window.innerHeight - buttonHeight;
-      const newY = Math.min(Math.max(info.point.y, 0), maxY);
-      setButtonPosition({ y: newY });
-    }
-  };
 
   return (
     <>
-      <motion.button
-        ref={buttonRef}
-        drag="y"
-        dragControls={dragControls}
-        dragMomentum={false}
-        dragConstraints={{
-          top: 0,
-          bottom: buttonRef.current ? window.innerHeight - buttonRef.current.offsetHeight : window.innerHeight
-        }}
-        onDragEnd={handleDragEnd}
-        initial={buttonPosition}
-        animate={buttonPosition}
-        style={{ position: 'fixed', left: 0 }}
-        className="z-50 bg-gray-800 text-white p-2 rounded-r-lg cursor-ns-resize"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-      >
-        <FaBars />
-      </motion.button>
-
       <motion.nav
-        initial={{ x: '-100%' }}
-        animate={{ x: isMenuOpen ? 0 : '-100%' }}
-        transition={{ duration: 0.3 }}
-        className="fixed left-0 top-0 h-full w-64 bg-gray-900 text-white p-6 z-40 overflow-y-auto"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 100 }}
+        className="fixed top-0 left-0 right-0 bg-black bg-opacity-30 backdrop-blur-sm h-16 flex items-center justify-between px-4 z-50"
       >
-        <div className="flex flex-col h-full">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center mb-8"
+        <Link to="/" className="flex items-center">
+          <img className="w-10 h-10 mr-2 filter invert rounded-lg" src={personallogo} alt="personallogo" />
+          <span className="text-xl font-bold text-white">Tilak Patel</span>
+        </Link>
+
+        <div className="hidden md:flex space-x-6">
+          {navItems.map((item, index) => (
+            <NavItem key={index} item={item} isActive={location.pathname === item.path} />
+          ))}
+        </div>
+
+        <div className="flex md:hidden">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white text-2xl"
           >
-            <img className="mr-2 w-12 filter hue-rotate-180" src={personallogo} alt="personallogo" />
-            <h1 className="text-xl bg-gradient-to-l bg-clip-text from-blue-400 via-slate-400 to-violet-300 text-transparent">
-              <a href="https://www.tilakpatell.com" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                tilakpatell.com
-              </a>
-            </h1>
-          </motion.div>
-
-          <div className="flex-grow">
-            {navItems.map((item, index) => (
-              <NavItem key={index} item={item} />
-            ))}
-          </div>
-
-          <div className="mt-auto">
-            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4">
-              {typewriterText}
-              <span className="animate-blink">|</span>
-            </div>
-          </div>
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </motion.button>
         </div>
       </motion.nav>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'tween' }}
+            className="fixed right-0 top-16 h-full w-64 bg-black bg-opacity-90 backdrop-blur-md flex flex-col z-40 p-4 md:hidden"
+          >
+            {navItems.map((item, index) => (
+              <NavItem key={index} item={item} isActive={location.pathname === item.path} onClick={() => setIsMenuOpen(false)} />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="fixed right-0 top-16 h-[calc(100%-4rem)] w-1 bg-white bg-opacity-20">
+        <motion.div 
+          className="w-full bg-white"
+          style={{ height: `${scrollProgress}%` }}
+        />
+      </div>
     </>
   );
 }
 
-function NavItem({ item }) {
-  return (
-    <motion.a
-      href={`#${item.id}`}
-      className="text-base font-bold relative group block py-2"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
-        {item.name}
-      </span>
-      {' '}
-      <span className="text-initial">{item.emoji}</span>
-      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 transition-all group-hover:w-full"></span>
-    </motion.a>
-  );
-}
-
-function TopBar() {
+function NavItem({ item, isActive, onClick }) {
+  const Icon = item.icon;
   return (
     <motion.div
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 100 }}
-      className="fixed top-0 left-0 right-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-16 flex items-center justify-center z-30"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
     >
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-        className="flex space-x-8"
+      <Link
+        to={item.path}
+        className={`flex items-center py-2 px-3 rounded-full ${isActive ? 'bg-white bg-opacity-20' : 'hover:bg-white hover:bg-opacity-10'}`}
+        onClick={onClick}
+        title={item.name}
       >
-        <SocialIcon href="https://www.linkedin.com/in/tilakpatell" icon={FaLinkedin} color="text-blue-200" />
-        <SocialIcon href="https://github.com/tilakpatell" icon={FaGithub} color="text-gray-200" />
-        <SocialIcon href="https://www.instagram.com/tilakpatell" icon={FaInstagram} color="text-pink-200" />
-      </motion.div>
+        <Icon className={`text-2xl ${isActive ? 'text-white' : 'text-gray-300'}`} />
+        <span className="ml-2 md:hidden">{item.name}</span>
+      </Link>
     </motion.div>
-  );
-}
-
-function SocialIcon({ href, icon: Icon, color }) {
-  return (
-    <motion.a 
-      href={href}
-      target="_blank" 
-      rel="noopener noreferrer"
-      whileHover={{ scale: 1.2, rotate: 360 }}
-      whileTap={{ scale: 0.9 }}
-    >
-      <Icon className={`text-4xl ${color} transition duration-300 hover:text-white`} />
-    </motion.a>
   );
 }
 
 export default function Layout({ children }) {
   return (
     <>
-      <TopBar />
       <Navbar />
       <main className="pt-16">
         {children}

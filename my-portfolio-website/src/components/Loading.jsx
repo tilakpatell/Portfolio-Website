@@ -9,7 +9,7 @@ function LoadingComponent() {
         animate={{ rotate: 360 }}
         transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
       >
-        <img src={logo} alt="Loading" className="w-16 h-16" />
+        <img src={logo} alt="Loading" className="w-16 h-16 filter invert rounded-md" />
       </motion.div>
     </div>
   );

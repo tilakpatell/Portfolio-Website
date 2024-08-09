@@ -2,90 +2,68 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaDownload } from "react-icons/fa";
 import resumePdf from "../assets/Resume.pdf";
-import resumePreview from "../assets/ResumePreview.png"; 
+import resumePreview from "../assets/ResumePreview.png";
 
 function Resume() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.2,
-        duration: 0.5
-      }
-    }
-  };
-
-  const buttonVariants = {
-    hover: {
-      scale: 1.05,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
-
   return (
     <motion.div
-      className="mt-20 sm:mt-40"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="mt-20 md:mt-40 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex justify-center items-center my-8 sm:my-16">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 0.2, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="absolute w-full max-w-3xl h-16 sm:h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg z-0"
-          ></motion.div>
-          <motion.h2
-            className="text-4xl sm:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            My Resume
-          </motion.h2>
-        </div>
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-5xl sm:text-6xl font-bold">
+          <span className="text-purple-500">&lt;/Check Out</span> <span className="text-white">My Resume</span><span className="text-purple-500">&gt;</span>
+          <div className="h-1 w-60 bg-gradient-to-r from-purple-400 via-blue-500 to-purple-500 mx-auto m-4 rounded-full "></div>
+        </h2>
+      </motion.div>
 
-        <div className="flex flex-col items-center justify-center space-y-6 sm:space-y-8">
-          <motion.p
-            className="text-lg sm:text-xl text-gray-300 text-center max-w-2xl px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            I'm passionate about creating innovative solutions and continuously learning new technologies. 
-            Download my resume to see my full qualifications and experience.
-          </motion.p>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+        className="text-lg text-gray-300 text-center mb-8"
+      >
+        I'm passionate about creating innovative solutions and continuously learning new technologies. 
+        Download my resume to see my full qualifications and experience.
+      </motion.p>
 
-          <motion.a
-            href={resumePdf}
-            download="Tilak_Patel_Resume.pdf"
-            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-base sm:text-lg font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
-            variants={buttonVariants}
-            whileHover="hover"
-          >
-            <FaDownload className="mr-2" />
-            Download Resume
-          </motion.a>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="flex flex-col items-center"
+      >
+        <motion.a
+          href={resumePdf}
+          download="Tilak_Patel_Resume.pdf"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="mb-8 inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 shadow-lg"
+        >
+          <FaDownload className="mr-2" />
+          Download Resume
+        </motion.a>
 
-          <motion.div
-            className="mt-6 sm:mt-8 w-full max-w-2xl px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-          >
-            <img 
-              src={resumePreview} 
-              alt="Resume Preview" 
-              className="w-full h-auto shadow-lg rounded-lg"
-            />
-          </motion.div>
-        </div>
-      </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="w-full max-w-2xl"
+        >
+          <img 
+            src={resumePreview} 
+            alt="Resume Preview" 
+            className="w-full h-auto shadow-lg rounded-lg"
+          />
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 }

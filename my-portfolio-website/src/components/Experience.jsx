@@ -1,121 +1,93 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { EXPERIENCES } from 'C:/Users/tilak/Documents/Projects/Portfolio Website/my-portfolio-website/src/constants/index.js';
-import { FaBriefcase, FaCalendar, FaChevronDown } from 'react-icons/fa';
-import {
-  DiJavascript1,
-  DiReact,
-  DiNodejs,
-  DiPython,
-  DiGit,
-  DiJava,
-} from 'react-icons/di';
+import { EXPERIENCES, TECH_STACK } from '/Users/tilakpatel/Desktop/Portfolio-Website/my-portfolio-website/src/constants/index.js';
+import { FaCalendar, FaBriefcase, FaCode, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const TechStack = () => {
-  const techStack = [
-    { Icon: DiJavascript1, color: '#f0db4f' },
-    { Icon: DiNodejs, color: '#3C873A' },
-    { Icon: DiReact, color: '#61DBFB' },
-    { Icon: DiGit, color: '#F1502F' },
-    { Icon: DiPython, color: '#3776AB' },
-    { Icon: DiJava, color: '#007396' }
-  ];
-
   return (
-    <div className="flex justify-center flex-wrap gap-8 p-10">
-      {techStack.map(({ Icon, color }, index) => (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="flex flex-wrap justify-center gap-4 my-12"
+    >
+      {TECH_STACK.map(({ icon, name }, index) => (
         <motion.div 
           key={index}
-          whileHover={{ scale: 1.1 }}
-          className="p-4 bg-white rounded-lg shadow-md flex items-center justify-center"
-          style={{ width: '80px', height: '80px', color }}
+          whileHover={{ scale: 1.05, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-purple-800 bg-opacity-20 rounded-xl shadow-lg p-4 flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl hover:bg-opacity-30 w-24 h-24"
         >
-          <Icon size="3em" />
+          <img src={icon} alt={name} className="w-10 h-10 mb-2 object-contain" />
+          <span className="text-white text-xs font-medium text-center">{name}</span>
         </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
 const ExperienceCard = ({ experience }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const cardVariants = {
-    closed: { height: 'auto' },
-    open: { height: 'auto' }
-  };
-
-  const contentVariants = {
-    closed: { opacity: 0, y: -20 },
-    open: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.3 } }
-  };
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <motion.div
+    <motion.div 
       layout
-      initial="closed"
-      animate={isOpen ? "open" : "closed"}
-      variants={cardVariants}
-      transition={{ duration: 0.3 }}
-      className="bg-gradient-to-r from-purple-900 to-blue-900 rounded-lg shadow-lg overflow-hidden mb-8"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+      className="bg-purple-900 bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl overflow-hidden w-full max-w-2xl mx-auto mb-8 hover:bg-opacity-30 transition-all duration-300"
     >
-      <motion.div 
-        className="p-6 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <div className="flex flex-col items-center justify-center mb-4">
-          <div className="flex items-center mb-2">
-            <FaBriefcase className="text-blue-300 mr-2" />
-            <h3 className="text-xl font-bold text-white text-center">{experience.role}</h3>
+      <motion.div layout className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center">
+            <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center shadow-lg overflow-hidden mr-4">
+              <img src={experience.logo} alt={experience.company} className="w-12 h-12 object-contain" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-white">{experience.company}</h3>
+              <h4 className="text-lg text-purple-300">{experience.role}</h4>
+            </div>
           </div>
-          <h4 className="text-lg font-semibold text-blue-300 text-center">{experience.company}</h4>
+          <div className="flex items-center text-gray-300">
+            <FaCalendar className="mr-2" />
+            <span>{experience.year}</span>
+          </div>
         </div>
-        <div className="flex items-center justify-center mb-4 text-gray-300">
-          <FaCalendar className="mr-2" />
-          <span>{experience.year}</span>
-        </div>
-        <div className="flex justify-center">
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <FaChevronDown className="text-blue-300" />
-          </motion.div>
-        </div>
-      </motion.div>
-      
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial="closed"
-            animate="open"
-            exit="closed"
-            variants={contentVariants}
-            className="px-6 pb-6"
-          >
-            <p className="text-gray-300 mb-4 text-center">{experience.description}</p>
-            <motion.div 
-              className="flex flex-wrap gap-2 mb-4 justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, staggerChildren: 0.1 }}
+        
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              {experience.technologies.map((tech, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="bg-blue-800 text-blue-200 px-2 py-1 rounded text-sm"
-                >
-                  {tech}
-                </motion.span>
-              ))}
+              <p className="text-gray-300 mb-4 leading-relaxed">{experience.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {experience.technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="bg-purple-700 bg-opacity-50 text-purple-200 px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+        
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-4 flex items-center text-purple-300 hover:text-purple-100 transition-colors duration-300"
+        >
+          {isExpanded ? 'Show Less' : 'Show More'}
+          {isExpanded ? <FaChevronUp className="ml-2" /> : <FaChevronDown className="ml-2" />}
+        </motion.button>
+      </motion.div>
     </motion.div>
   );
 };
@@ -137,22 +109,61 @@ const Experience = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="mt-8 sm:mt-16"
+      className="min-h-screen py-20 px-4 flex items-center justify-center"
     >
-      <div className="relative flex justify-center items-center my-8 sm:my-16">
-        <div className="absolute w-full max-w-3xl h-16 sm:h-20 bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 rounded-lg opacity-20"></div>
-        <h2 className='text-4xl sm:text-6xl text-center bg-clip-text bg-gradient-to-r from-purple-500 via-blue-300 to-blue-400 text-transparent font-bold z-10 relative px-4'>
-          Experiences
-        </h2>
-      </div>
-      <TechStack />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 mt-8 px-4 sm:px-0">
-        {sortedExperiences.map((experience, index) => (
-          <ExperienceCard 
-            key={index} 
-            experience={experience} 
-          />
-        ))}
+      <div className="max-w-4xl w-full">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-16 text-center"
+        >
+          <h2 className="text-5xl sm:text-6xl font-bold mb-4">
+            <span className="text-purple-500">&lt;/Experience</span> <span className="text-white">and Skills</span><span className="text-purple-500">&gt;</span>
+          </h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Dive into my professional journey and technical expertise
+          </p>
+          <div className="h-1 w-60 bg-gradient-to-r from-purple-400 via-blue-500 to-purple-500 mx-auto m-2 rounded-full "></div>
+        </motion.div>
+
+        <TechStack />
+        
+        <div className="mt-16 space-y-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center mb-8"
+          >
+            <FaBriefcase className="text-4xl text-purple-400 mr-4" />
+            <h3 className="text-3xl font-semibold text-white">Work Experience</h3>
+          </motion.div>
+
+          {sortedExperiences.map((experience, index) => (
+            <ExperienceCard key={index} experience={experience} />
+          ))}
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-16 text-center"
+        >
+          <FaCode className="text-5xl text-purple-400 mx-auto mb-4" />
+          <p className="text-xl text-gray-300">
+            Always learning, always coding. Check out my latest projects to see these skills in action!
+          </p>
+          <motion.a
+            href="/projects"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block mt-8 px-8 py-3 bg-purple-600 text-white rounded-full font-semibold hover:bg-purple-700 transition duration-300"
+          >
+            View Projects
+          </motion.a>
+        </motion.div>
       </div>
     </motion.div>
   );
